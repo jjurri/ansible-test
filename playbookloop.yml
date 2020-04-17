@@ -1,0 +1,17 @@
+---
+- name: Loops Playbook
+  hosts: linux1
+  become: yes
+
+  tasks:
+  - name:  Say Hello to all
+    debug: msg="Hello {{ item }}"
+    loop:
+       - "Vasya"
+       - "Petya"
+       - "Masha"
+       - "Katia"
+  - name: Loop until example
+    shell: echo -n Z >> myfile.txt && cat myfile.txt
+    regitster: output
+    
