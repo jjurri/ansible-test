@@ -3,22 +3,22 @@
   hosts: linux1
   become: yes
 
-  tasks:
-  - name: Say Hello to all
+  tasks: 
+  - name: Say hello to all
     debug: msg="Hello {{ item }}"
     loop:
-        - "Vasya"
-        - "Petya"
-        - "Masha"
-        - "Katia"
+        - "1"
+        - "2" 
+        - "3" 
+        - "4" 
 
   - name: Loop until example
-    shell: echo -n Z >> myfile.txt && cat myfile.txt
+    shell: echo -n Z >> myfile.txt && cat myfile.txt 
     register: output
     delay: 2
     retries: 10
     until: output.stdout.find("ZZZZ") == false
-    
-  - name: Print Final Output
+
+  - name: Print
     debug:
-      var: output.stdout
+      var: output
