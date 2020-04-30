@@ -22,3 +22,10 @@
   - name: Print Final Output
     debug:
       var: output.stdout
+
+#  - name: Install many packages   # not working!
+#    yum: name={{ item }} state=installed
+#    with_items:
+#          - python
+#          - tree
+#          - mysql-client 
