@@ -1,0 +1,49 @@
+---
+- name: My include playbook
+  hosts: all 
+  become: yes
+
+  vars:
+   mytext: "Hello from ADV"
+
+  tasks:
+  - name: Ping test
+    ping:
+
+  - name: Unregister Server from Load Balancer
+    shell: echo This server {{ inventory_hostname }} was deregistered from our Load Balancer, node name is {{ ansible_nodename }} >> /home/user/log.txt
+    delegate_to: 127.0.0.1    
+
+  - name: Updating my Database
+    shell: echo UPDATING Database....
+    run_once: true
+
+  - name: Create file1
+    copy:
+        dest: /home/secret/file1.txt
+        content: |
+          This is  file_1
+          Plain text Hello
+          Text from var {{ mytext }}
+    delegate_to: linux1
+
+  - name: Create file2
+    copy:
+        dest: /home/secret/file2.txt
+        content: |
+          This is  file_2
+          Plain text Hello
+          Text from var {{ mytext }}
+
+  - name: Reboot my servers
+    shell: sleep 3 && reboot now
+    async: 1
+    poll: 0
+
+  - name: Wait till my servers will come up online
+    wait_for:
+        host: "{{ inventory_hostname }}"
+        state: started
+        delay: 5
+        timeout: 40
+    delegate_to: 127.0.0.1

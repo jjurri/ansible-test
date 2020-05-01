@@ -1,15 +1,15 @@
 
 [staging_servers]
-linuxX ansible_host=192.168.8.112
-linuxU ansible_host=10.200.5.138 owner=Ub
+#linuxX ansible_host=192.168.8.112
+#linuxU ansible_host=10.200.5.138 owner=Ub
 
 [staging_servers:vars]
 ansible_user=user
 ansible_ssh_pass=user
 
 [prod_servers]
-linux1 ansible_host=10.200.5.24 owner=Jo
-linux2 ansible_host=10.200.5.17 owner=Ka
+linux1 ansible_host=192.168.8.112 owner=Jo
+linux2 ansible_host=192.168.8.113 owner=Ka
 
 [prod_servers:vars]
 ansible_user=user

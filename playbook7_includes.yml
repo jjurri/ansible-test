@@ -1,6 +1,6 @@
 ---
 - name: My include playbook
-  hosts: linuxX
+  hosts: all
   become: yes
 
   vars:
