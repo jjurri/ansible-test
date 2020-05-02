@@ -1,0 +1,10 @@
+---
+- name: shutdown
+  hosts: all
+  become: yes
+
+  tasks:
+  - name: shut        
+    shell: shutdown
+ #   async: 1
+ #   poll: 0
